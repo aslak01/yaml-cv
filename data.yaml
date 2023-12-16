@@ -1,0 +1,36 @@
+---
+name: Your Name
+dob: 01.01.1970
+address: [Adressroad 123, 9897 Addressplace]
+phone: '12312312'
+email: you@email.com
+myurls:
+  - url: https://example.com
+  - url: https://example.com/2
+subsections:
+  enabled: true
+  sections:
+    - heading: Arbeidserfaring
+      enabled: true
+      items:
+        - years: 2020--
+          city: Place
+          headline: Employer
+          subheading: Position
+          description: Descr
+          bullets: [Something, Anotherthing]
+    - heading: Utdannelse
+      enabled: true
+      items:
+        - years: 2014--2016
+          city: Place
+          headline: Learner of stuff
+          subheading: Institution
+    - heading: Want something more?
+      enabled: true
+      items:
+        - years: 2011--2013
+          headline: Something more
+          subheading: The business
+          city: Place
+          description: Described
