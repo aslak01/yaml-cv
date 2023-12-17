@@ -24,3 +24,4 @@ dist-ssr
 *.sw?
 no_details.yaml
 en_details.yaml
+sendt/

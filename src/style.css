@@ -1,11 +1,12 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: "Akzidenz-Grotesk Next", sans-serif;
+  line-height: 1.4;
   font-weight: 400;
   hyphens: auto;
   -webkit-hyphens: auto;
 
-  --main-color: rgba(255, 255, 255, 0.87);
+  --main-color: #ffffff;
+  --dark-main-color: #000000;
 
   color-scheme: light dark;
   color: var(--main-color);
@@ -15,6 +16,13 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+
+  @media (min-width: 830px) {
+    --col-gap: 2ch;
+    --first-col: 25ch;
+    --second-col: 55ch;
+  }
 }
 
 a {
@@ -39,32 +47,35 @@ body {
 #app {
   max-width: 1280px;
   margin: 0 auto;
-  padding-left: 1rem;
-  padding-top: 1rem;
-  padding-right: 2rem;
-  padding-bottom: 4rem;
+  padding-left: 2rem;
+  padding-top: 2rem;
+  padding-right: 4rem;
+  padding-bottom: 15rem;
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    background-color: #ffffff;
-    color: #213547;
+    background-color: var(--main-color);
+    color: var(--dark-main-color);
   }
 
   a {
-    color: #213547;
+    color: var(--dark-main-color);
   }
 
   a:hover {
-    color: #213547;
     color: #747bff;
   }
 }
 
 .infos {
+  margin-top: 2ch;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: var(--first-col) 1fr 1fr;
+  gap: var(--col-gap);
+  row-gap: 2ch;
 }
+
 
 h1,
 h2,
@@ -74,15 +85,29 @@ p,
 ul {
   margin: 0;
   padding: 0;
-}
-
-h2 {
   font-weight: normal;
 }
 
-h3 {
-  font-size: 1.1em;
+h1 {
+  font-size: 1.6rem;
 }
+
+h2 {
+  margin-bottom: 0.5ch;
+}
+
+h3 {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+address,
+a {
+  font-style: normal;
+  font-weight: 400;
+}
+
+
 
 h4 {
   font-weight: normal;
@@ -90,24 +115,39 @@ h4 {
 }
 
 ul {
-  padding-left: 0;
+  padding-left: 1ch;
 }
 
-.section {
-  margin-top: 3ch;
+section:not(:first-of-type) {
+  margin-top: 10ch;
 }
+
 
 .item {
   display: grid;
-  grid-template-columns: minmax(min-content, 25ch) minmax(30ch, 60ch);
-  gap: 2ch;
-  /* margin-block: 2ch; */
+  grid-template-columns: var(--first-col) var(--second-col);
+  gap: var(--col-gap);
+  align-items: center;
 }
 
-.item * {
-  margin-bottom: 0.5ch;
+
+.experience .item {
+  margin-bottom: 2ch;
+  align-items: start;
 }
 
-.desc {
+p,
+li,
+.smdetail,
+.item time {
+  height: 100%;
+  font-size: smaller;
+}
+
+.detail {
+  font-weight: bold;
+}
+
+li {
   margin-top: 0.5ch;
 }

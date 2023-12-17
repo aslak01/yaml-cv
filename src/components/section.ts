@@ -1,10 +1,13 @@
 import type { Section, SectionData } from "../types";
 import { apEl, apElClass, apElCont, apElContClass } from "../functions";
 
-export function createSection(wrapper: HTMLElement, section: Section) {
-  const sectionEl = apElClass(wrapper, "div", "section");
+export function createSection(
+  wrapper: HTMLElement,
+  section: Section,
+  cls: string = "",
+) {
+  const sectionEl = apElClass(wrapper, "section", `${cls}`);
   const contentEl = apElClass(sectionEl, "div", "content");
-  // const descEl = apElClass(sectionEl, "div", "desc");
 
   apElContClass(contentEl, "h2", section.heading, "title");
   section.items.map((c) => createSectionContent(sectionEl, c));
@@ -15,7 +18,16 @@ export function createSectionContent(wrapper: HTMLElement, item: SectionData) {
   const descEl = apElClass(itemEl, "div", "desc");
   const contentEl = apElClass(itemEl, "div", "content");
 
-  const { headline, subheading, description, bullets, city, years } = item;
+  const {
+    headline,
+    subheading,
+    description,
+    bullets,
+    city,
+    years,
+    detail,
+    altdetail,
+  } = item;
 
   headline && apElContClass(contentEl, "h3", headline, "subheading");
   subheading &&
@@ -27,11 +39,13 @@ export function createSectionContent(wrapper: HTMLElement, item: SectionData) {
     bullets.map((b) => apElCont(bulletsEl, "li", b));
   }
 
-  city && apElContClass(descEl, "div", city, "city");
   years && apElContClass(
     descEl,
     "time",
     years.replace("--", "&ndash;").replace(" ", "&nbsp;"),
     "years",
   );
+  city && apElContClass(descEl, "div", city, "smdetail");
+  detail && apElContClass(descEl, "div", detail, "detail");
+  altdetail && apElContClass(descEl, "div", altdetail, "altdetail");
 }

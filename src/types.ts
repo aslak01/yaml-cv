@@ -18,4 +18,6 @@ export type SectionData = {
   subheading: string;
   description: string;
   bullets?: string[];
+  detail?: string;
+  altdetail?: string;
 };

@@ -1,13 +1,13 @@
 import type { Meta } from "../types";
 
-import { apEl, apElClass, apElCont, apElContClass } from "../functions";
+import { apElClass, apElCont, apElContClass } from "../functions";
 
 export function createHeader(
   wrapper: HTMLElement,
   meta: Meta,
 ) {
   const { name, address, dob, email, myurls, phone } = meta;
-  const headingEl = apEl(wrapper, "div");
+  const headingEl = apElClass(wrapper, "section", "heading");
   apElContClass(headingEl, "h1", name, "name");
   apElCont(headingEl, "time", dob);
 
@@ -17,7 +17,7 @@ export function createHeader(
 
   const formattedEmail = `<a href="mailto:${email}">${email}</a>`;
   const formattedPhone = `<a href="tel:${phone}">${phone}</a>`;
-  const formattedContact = [formattedEmail, formattedPhone];
+  const formattedContact = [formattedPhone, formattedEmail];
 
   apElContClass(
     infos,
