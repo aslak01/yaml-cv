@@ -16,6 +16,8 @@ export function createSection(
 export function createSectionContent(wrapper: HTMLElement, item: SectionData) {
   const itemEl = apElClass(wrapper, "div", "item");
   const descEl = apElClass(itemEl, "div", "desc");
+  const headingEl = apElClass(itemEl, "div", "heading");
+  apElClass(itemEl, "div", "padd");
   const contentEl = apElClass(itemEl, "div", "content");
 
   const {
@@ -29,9 +31,9 @@ export function createSectionContent(wrapper: HTMLElement, item: SectionData) {
     altdetail,
   } = item;
 
-  headline && apElContClass(contentEl, "h3", headline, "subheading");
+  headline && apElContClass(headingEl, "h3", headline, "subheading");
   subheading &&
-    apElContClass(contentEl, "h4", subheading, "subheading");
+    apElContClass(headingEl, "h4", subheading, "subheading");
   description && apElContClass(contentEl, "p", description, "desc");
 
   if (bullets && bullets?.length > 0) {
@@ -39,13 +41,13 @@ export function createSectionContent(wrapper: HTMLElement, item: SectionData) {
     bullets.map((b) => apElCont(bulletsEl, "li", b));
   }
 
+  city && apElContClass(descEl, "div", city, "smdetail");
   years && apElContClass(
     descEl,
     "time",
     years.replace("--", "&ndash;").replace(" ", "&nbsp;"),
     "years",
   );
-  city && apElContClass(descEl, "div", city, "smdetail");
   detail && apElContClass(descEl, "div", detail, "detail");
   altdetail && apElContClass(descEl, "div", altdetail, "altdetail");
 }

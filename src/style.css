@@ -126,14 +126,14 @@ section:not(:first-of-type) {
 .item {
   display: grid;
   grid-template-columns: var(--first-col) var(--second-col);
-  gap: var(--col-gap);
+  column-gap: var(--col-gap);
+  row-gap: calc(var(--col-gap) / 3);
   align-items: center;
 }
 
-
 .experience .item {
   margin-bottom: 2ch;
-  align-items: start;
+  /* align-items: start; */
 }
 
 p,
@@ -150,4 +150,19 @@ li,
 
 li {
   margin-top: 0.5ch;
+}
+
+.desc {
+  display: flex;
+  justify-content: space-between;
+}
+
+.item .heading {
+  display: flex;
+  gap: 1ch;
+}
+
+.heading:has(h4) h3::after {
+  content: ",";
+  font-weight: 400;
 }
