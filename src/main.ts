@@ -20,7 +20,7 @@ type Lang = { language: string; proficiency: string };
 const langSect = {
   heading: data["languages-heading"],
   items: data.languages.map((l: Lang) => ({
-    detail: l.language,
+    headline: l.language,
     subheading: l.proficiency,
   })),
 };
