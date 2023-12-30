@@ -122,6 +122,9 @@ section:not(:first-of-type) {
   margin-top: 10ch;
 }
 
+section {
+  break-inside: avoid;
+}
 
 .item {
   display: grid;
@@ -133,7 +136,6 @@ section:not(:first-of-type) {
 
 .experience .item {
   margin-bottom: 2ch;
-  /* align-items: start; */
 }
 
 p,
@@ -165,4 +167,18 @@ li {
 .heading:has(h4) h3::after {
   content: ",";
   font-weight: 400;
+}
+
+@media print {
+  section {
+    break-inside: avoid;
+  }
+
+  section:not(:first-of-type) {
+    margin-top: 4ch;
+  }
+
+  #app {
+    padding-bottom: 2rem;
+  }
 }
