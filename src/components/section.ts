@@ -45,7 +45,7 @@ export function createSectionContent(wrapper: HTMLElement, item: SectionData) {
   years && apElContClass(
     descEl,
     "time",
-    years.replace("--", "&ndash;").replace(" ", "&nbsp;"),
+    years.replaceAll("--", "\u2013").replaceAll(" ", "\u00A0"),
     "years",
   );
   detail && apElContClass(descEl, "div", detail, "detail");

@@ -6,4 +6,7 @@ export default {
     ViteYaml(),
     viteSingleFile(),
   ],
+  server: {
+    port: 8802,
+  },
 };

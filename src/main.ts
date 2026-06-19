@@ -3,26 +3,35 @@ import "./style.css";
 import { createHeader } from "./components/header.ts";
 import { createSection } from "./components/section.ts";
 
-import data from "../no_details.yaml";
-import { Meta, Section } from "./types.ts";
+import sampleData from "../data.yaml";
+import { CvData, Meta, Section } from "./types.ts";
+
+// Use a git-ignored private data file (e.g. no_details.yaml) when it is
+// present, otherwise fall back to the committed sample so a fresh clone
+// still builds and runs.
+const overrides = import.meta.glob("../no_details.yaml", {
+  eager: true,
+  import: "default",
+});
+const data = (Object.values(overrides)[0] ?? sampleData) as CvData;
 
 const { name, address, dob, email, myurls, phone } = data;
-const meta = { name, address, dob, email, myurls, phone }
-const { languages, "languages-heading": langHeading } = data
-const { planguages, "planguages-heading": plangsHeading } = data
+const meta: Meta = { name, address, dob, email, myurls, phone };
 
-const { sections } = data.subsections;
-
-const app = document.querySelector<HTMLDivElement>("#app")!;
+const app = document.querySelector<HTMLElement>("#app")!;
 
 createHeader(app, meta);
 
-sections.map((s: Section) => createSection(app, s, "experience"));
+const { enabled: subsectionsEnabled = true, sections } = data.subsections;
+if (subsectionsEnabled) {
+  sections
+    .filter((s) => s.enabled !== false)
+    .forEach((s) => createSection(app, s, "experience"));
+}
 
-type Lang = { language: string; proficiency: string };
-const langSect = {
-  heading: langHeading,
-  items: languages.map((l: Lang) => ({
+const langSect: Section = {
+  heading: data["languages-heading"],
+  items: data.languages.map((l) => ({
     headline: l.language,
     subheading: l.proficiency,
   })),
@@ -30,29 +39,20 @@ const langSect = {
 
 createSection(app, langSect, "languages");
 
-type Plang = { language: string };
-const plangSect = {
-  heading: plangsHeading,
-  items: planguages.map((l: Plang, i: number) => {
-    if (i === 0) {
-      return ({
-        city: "Rangert etter erfaring med",
-        subheading: l.language,
-      });
-    }
-
-    return ({ subheading: l.language });
-  }),
+const plangSect: Section = {
+  heading: data["planguages-heading"],
+  items: data.planguages.map((l, i) =>
+    i === 0
+      ? { city: "Rangert etter erfaring med", subheading: l.language }
+      : { subheading: l.language }
+  ),
 };
 
 createSection(app, plangSect, "planguages");
 
-type Software = { subsec: string; description: string };
-const { software, "software-heading": softwareHeading } = data
-
-const softwareSect = {
-  heading: softwareHeading,
-  items: software.map((s: Software) => ({
+const softwareSect: Section = {
+  heading: data["software-heading"],
+  items: data.software.map((s) => ({
     city: s.subsec,
     subheading: s.description,
   })),

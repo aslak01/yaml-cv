@@ -1,6 +1,13 @@
 import type { Meta } from "../types";
 
-import { apElClass, apElCont, apElContClass } from "../functions";
+import { apAnchor, apEl, apElClass, apElCont, apElContClass } from "../functions";
+
+function appendLines(parent: HTMLElement, lines: string[]) {
+  lines.forEach((line, i) => {
+    if (i > 0) apEl(parent, "br");
+    parent.appendChild(document.createTextNode(line));
+  });
+}
 
 export function createHeader(
   wrapper: HTMLElement,
@@ -13,27 +20,16 @@ export function createHeader(
 
   const infos = apElClass(headingEl, "div", "infos");
 
-  apElCont(infos, "address", address.join("<br>"));
+  appendLines(apEl(infos, "address"), address);
 
-  const formattedEmail = `<a href="mailto:${email}">${email}</a>`;
-  const formattedPhone = `<a href="tel:${phone}">${phone}</a>`;
-  const formattedContact = [formattedPhone, formattedEmail];
+  const contactEl = apElClass(infos, "address", "contact");
+  apAnchor(contactEl, `tel:${phone}`, phone);
+  apEl(contactEl, "br");
+  apAnchor(contactEl, `mailto:${email}`, email);
 
-  apElContClass(
-    infos,
-    "address",
-    formattedContact.join("<br>"),
-    "contact",
-  );
-
-  const formattedUrls = myurls.map((l) => l.url).map((l) =>
-    `<a href="${l}">${l}</a>`
-  );
-
-  apElContClass(
-    infos,
-    "address",
-    formattedUrls.join("<br>"),
-    "link",
-  );
+  const linkEl = apElClass(infos, "address", "link");
+  myurls.forEach((l, i) => {
+    if (i > 0) apEl(linkEl, "br");
+    apAnchor(linkEl, l.url, l.url);
+  });
 }

@@ -34,3 +34,20 @@ subsections:
           subheading: The business
           city: Place
           description: Described
+languages-heading: Språk
+languages:
+  - language: Norsk
+    proficiency: Morsmål
+  - language: Engelsk
+    proficiency: Flytende
+planguages-heading: Programmeringsspråk
+planguages:
+  - language: TypeScript
+  - language: Python
+  - language: Rust
+software-heading: Verktøy
+software:
+  - subsec: Design
+    description: Figma, Illustrator
+  - subsec: Utvikling
+    description: VS Code, Git
