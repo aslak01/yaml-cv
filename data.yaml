@@ -1,53 +1,80 @@
 ---
-name: Your Name
-dob: 01.01.1970
-address: [Adressroad 123, 9897 Addressplace]
-phone: '12312312'
-email: you@email.com
-myurls:
-  - url: https://example.com
-  - url: https://example.com/2
-subsections:
+# Sample data. Mirrors the latex-cvgen master schema (see
+# latex-cvgen/aslak/no_details.yaml). Drop a private no_details.yaml next to
+# this file to override it; the latex-only settings (font, geometry, ...) are
+# accepted but ignored by the web renderer.
+details:
+  name: Your Name
+  dob: 01.01.1970
+  address: [Adressroad 123, 9897 Addressplace]
+  phone: '12312312'
+  email: you@email.com
+  myurls:
+    - url: https://example.com
+    - url: https://example.com/2
+
+intro:
+  heading: Summary
   enabled: true
-  sections:
-    - heading: Arbeidserfaring
-      enabled: true
-      items:
-        - years: 2020--
-          city: Place
-          headline: Employer
-          subheading: Position
-          description: Descr
-          bullets: [Something, Anotherthing]
-    - heading: Utdannelse
-      enabled: true
-      items:
-        - years: 2014--2016
-          city: Place
-          headline: Learner of stuff
-          subheading: Institution
-    - heading: Want something more?
-      enabled: true
-      items:
-        - years: 2011--2013
-          headline: Something more
-          subheading: The business
-          city: Place
-          description: Described
-languages-heading: Språk
-languages:
-  - language: Norsk
-    proficiency: Morsmål
-  - language: Engelsk
-    proficiency: Flytende
-planguages-heading: Programmeringsspråk
+  text: |
+    Short summary describing who you are and what you do.
+
+sections:
+  - heading: Arbeidserfaring
+    enabled: true
+    items:
+      - years: 2020--
+        city: Place
+        headline: Employer
+        subheading: Position
+        description: Descr
+        bullets: [Something, Anotherthing]
+
 planguages:
-  - language: TypeScript
-  - language: Python
-  - language: Rust
-software-heading: Verktøy
+  heading: Programmeringsspråk
+  subheading: Rangert etter erfaring med
+  enabled: true
+  items:
+    - language: TypeScript
+    - language: Python
+    - language: Rust
+
 software:
-  - subsec: Design
-    description: Figma, Illustrator
-  - subsec: Utvikling
-    description: VS Code, Git
+  heading: Verktøy
+  enabled: true
+  items:
+    - subsec: Design
+      description: Figma, Illustrator
+    - subsec: Utvikling
+      description: VS Code, Git
+
+sections2:
+  - heading: Utdannelse
+    enabled: true
+    items:
+      - years: 2014--2016
+        city: Place
+        headline: Learner of stuff
+        subheading: Institution
+  - heading: Want something more?
+    enabled: true
+    items:
+      - years: 2011--2013
+        city: Place
+        headline: Something more
+        subheading: The business
+        description: Described
+
+languages:
+  heading: Språk
+  enabled: true
+  items:
+    - language: Norsk
+      proficiency: Morsmål
+    - language: Engelsk
+      proficiency: Flytende
+
+references:
+  heading: Referanser
+  enabled: false
+  fallback: Sendes ved forespørsel
